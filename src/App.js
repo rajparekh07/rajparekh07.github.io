@@ -1,38 +1,40 @@
+// Raj Parekh Portfolio
+// 16-06-2020
+// Author: Raj Parekh
+
+
+// Import React
 import React from 'react';
+
+// Import CSS
 import './App.css';
 import 'semantic-ui-css/semantic.min.css'
-import { Button, Header } from 'semantic-ui-react';
+
+
+// Import Node Modules
 import ReactGA from 'react-ga';
 
 
+// Import project files
+import ProductionPlaceholder from './components/ProductionPlaceholder'
+import Container from './components/MainContainer'
+
+
+// Main App()
 function App() {
 
   ReactGA.initialize('UA-169628228-01');
   ReactGA.pageview(window.location.pathname + window.location.search);
-
-  return (
+  
+  return  (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') ?
+   (
+    <div>
+      <Container/>
+    </div>
+  )
+  :(
     <div className="App">
-      <header className="App-header">
-        <Header size='huge' color="blue">Raj Parekh</Header>
-
-        <p>
-          This portfolio is under construction
-        </p>
-       
-        <p class="App-link">Meanwhile visit,</p>  
-
-        <Button.Group>
-            <Button secondary as='a' href="https://docs.google.com/document/d/1-iLJ-8OZnjc51iMDdemKqGuc1gKxEq6OGvdC3zfcbj4/export?format=pdf">Resume</Button>
-
-            <Button.Or />
-            <Button primary as='a' href="https://devdb.io/parekhraj">Profile</Button>
-            
-            <Button.Or />
-            <Button secondary as='a' href="https://in.linkedin.com/in/rajparekh07">LinkedIn</Button>
-
-          </Button.Group>
-       
-      </header>
+      <ProductionPlaceholder />
     </div>
   );
 }
